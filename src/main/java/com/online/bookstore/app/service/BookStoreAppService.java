@@ -4,7 +4,9 @@ import java.util.List;
 
 import com.online.bookstore.app.entity.Book;
 import com.online.bookstore.app.entity.Order;
+import org.springframework.stereotype.Service;
 
+@Service
 public interface BookStoreAppService {
 
 	public String welcome();
