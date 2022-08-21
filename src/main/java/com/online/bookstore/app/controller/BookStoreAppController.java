@@ -61,7 +61,7 @@ public class BookStoreAppController {
 		return new ResponseEntity<Book>(bookDeleted, HttpStatus.ACCEPTED);
 	}
 
-	//Buying books which will return the total payable amount
+	//Buying books which will return Order entity with order details and total payable amount
 	@PostMapping("/buybooks")
 	public ResponseEntity<Order> buyBooks(@RequestBody List<Book> books) {
 		Order order = bookStoreAppService.buyBooks(books);
