@@ -100,24 +100,14 @@ public class BookStoreAppServiceImpl implements BookStoreAppService {
 			//check if the requested book is valid and existing in db
 			Book bookDB = findBookById(book.getBookId()); // Get the book from DB
 			orderedBooks.add(bookDB);
-			if(bookDB == null) {
-				System.out.println("requested book to buy is not available...");
-			}else if(bookDB.getBookQuantity() < book.getBookQuantity()) {
-				System.out.println("Requested quantity for the book to buy is not available...out of stock...");
-			}else {
+			if(bookDB.getBookQuantity() > book.getBookQuantity()) {
 				int updatedQuantity = bookDB.getBookQuantity() - book.getBookQuantity();
 				bookDB.setBookQuantity(updatedQuantity);
-				
+
 				// Update database for the book after buying
-				bookStoreRepo.save(bookDB); // Update book with new quantity after buying
-				
-				/*if(updatedQuantity > 0)
-					bookStoreRepo.save(bookDB); // Update book with new quantity after buying
-				else
-					bookStoreRepo.deleteById(bookDB.getBookId()); // Delete book if quantity is 0 after buying*/
-				
+				bookStoreRepo.save(bookDB); // Update book with new quantity after buying				
 				orderQuantity += book.getBookQuantity();
-				
+
 				// Calculate Bill with promotional discounts
 				totalBillAmount += bookDB.getBookPrice() * book.getBookQuantity();
 				double eachItemDiscountAmount = (bookDB.getBookPrice() * bookDB.getPromotionalDiscountPercentage()/100);
