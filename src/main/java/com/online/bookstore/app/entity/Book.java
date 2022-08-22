@@ -5,24 +5,91 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 
 @Entity
 @Table(name="book")
 public class Book {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long bookId;
-	private String bookName; 
+
+	@NotBlank(message = "Valid Book Name must be provided")
+	private String bookName;
+
 	private String bookDescription;
+
 	private String bookAuthor;
+
+	@NotBlank(message = "Valid Book type/classification must be provided")
 	private String bookClassification;
+
+	@NotNull(message = "Valid Book price must be provided")
+	@Min(value = 1, message = "Book Price should not be less than 1.00")
 	private double bookPrice;
+
+	@NotBlank(message = "Valid Book ISBN must be provided")
 	private String bookISBN;
+
+	@NotNull(message = "Valid Book quantity must be provided")
+	@Min(value = 1, message = "Book Quantity should not be less than 1")
 	private int bookQuantity;
+
 	private double promotionalDiscountPercentage;
 	
+	public Book() { }
+
+	public Book(Long bookId, @NotBlank(message = "Valid Book Name must be provided") String bookName,
+			String bookDescription, String bookAuthor,
+			@NotBlank(message = "Valid Book type/classification must be provided") String bookClassification,
+			@NotNull(message = "Valid Book price must be provided") @Min(value = 1, message = "Book Price should not be less than 1.00") double bookPrice,
+			@NotBlank(message = "Valid Book ISBN must be provided") String bookISBN,
+			@NotNull(message = "Valid Book quantity must be provided") @Min(value = 1, message = "Book Quantity should not be less than 1") int bookQuantity,
+			double promotionalDiscountPercentage) {
+		this.bookId = bookId;
+		this.bookName = bookName;
+		this.bookDescription = bookDescription;
+		this.bookAuthor = bookAuthor;
+		this.bookClassification = bookClassification;
+		this.bookPrice = bookPrice;
+		this.bookISBN = bookISBN;
+		this.bookQuantity = bookQuantity;
+		this.promotionalDiscountPercentage = promotionalDiscountPercentage;
+	}
+	
+	public Book(@NotBlank(message = "Valid Book Name must be provided") String bookName,
+			String bookDescription, String bookAuthor,
+			@NotBlank(message = "Valid Book type/classification must be provided") String bookClassification,
+			@NotNull(message = "Valid Book price must be provided") @Min(value = 1, message = "Book Price should not be less than 1.00") double bookPrice,
+			@NotBlank(message = "Valid Book ISBN must be provided") String bookISBN,
+			@NotNull(message = "Valid Book quantity must be provided") @Min(value = 1, message = "Book Quantity should not be less than 1") int bookQuantity,
+			double promotionalDiscountPercentage) {
+		this.bookName = bookName;
+		this.bookDescription = bookDescription;
+		this.bookAuthor = bookAuthor;
+		this.bookClassification = bookClassification;
+		this.bookPrice = bookPrice;
+		this.bookISBN = bookISBN;
+		this.bookQuantity = bookQuantity;
+		this.promotionalDiscountPercentage = promotionalDiscountPercentage;
+	}
+
+	public Book(@NotBlank(message = "Valid Book Name must be provided") String bookName,
+			@NotBlank(message = "Valid Book type/classification must be provided") String bookClassification,
+			@NotNull(message = "Valid Book price must be provided") @Min(value = 1, message = "Book Price should not be less than 1.00") double bookPrice,
+			@NotBlank(message = "Valid Book ISBN must be provided") String bookISBN,
+			@NotNull(message = "Valid Book quantity must be provided") @Min(value = 1, message = "Book Quantity should not be less than 1") int bookQuantity) {
+		this.bookName = bookName;
+		this.bookClassification = bookClassification;
+		this.bookPrice = bookPrice;
+		this.bookISBN = bookISBN;
+		this.bookQuantity = bookQuantity;
+	}
+
 	public Long getBookId() {
 		return bookId;
 	}

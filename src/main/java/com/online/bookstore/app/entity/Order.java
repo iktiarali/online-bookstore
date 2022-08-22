@@ -11,6 +11,18 @@ public class Order {
 	private double totalPayableAmount;
 	private double totalDiscountAmount;
 	
+	public Order() { }
+	
+	public Order(String orderId, int orderQuantity, List<Book> books, double totalBillAmount, double totalPayableAmount,
+			double totalDiscountAmount) {
+		this.orderId = orderId;
+		this.orderQuantity = orderQuantity;
+		this.books = books;
+		this.totalBillAmount = totalBillAmount;
+		this.totalPayableAmount = totalPayableAmount;
+		this.totalDiscountAmount = totalDiscountAmount;
+	}
+
 	public String getOrderId() {
 		return orderId;
 	}

@@ -24,6 +24,12 @@ public class BookStoreAppController {
 	
 	@Autowired
 	BookStoreAppService bookStoreAppService;
+	
+	public BookStoreAppController() { }
+
+	public BookStoreAppController(BookStoreAppService bookStoreAppService) {
+		 this.bookStoreAppService = bookStoreAppService;
+	}
 
 	@GetMapping("/welcome")
 	public ResponseEntity<String> welcome() {
@@ -38,32 +44,32 @@ public class BookStoreAppController {
 	}
 	
 	@GetMapping("/getbook/{bookid}")
-	public ResponseEntity<Book> getBookById(@PathVariable("bookid") Long bookId) {
+	public ResponseEntity<Book> getBookById(@PathVariable("bookid") Long bookId) throws Exception {
 		Book book = bookStoreAppService.getBookById(bookId);
 		return new ResponseEntity<Book>(book, HttpStatus.OK);
 	}
 
 	@PostMapping("/addbook")
-	public ResponseEntity<Book> addBooks(@RequestBody Book book) {
+	public ResponseEntity<Book> addBook(@RequestBody Book book) throws Exception {
 		Book bookAdded = bookStoreAppService.addBook(book);
 		return new ResponseEntity<Book>(bookAdded, HttpStatus.CREATED);
 	}
 
 	@PutMapping("/updatebook")
-	public ResponseEntity<Book> updateBook(@RequestBody Book book) {
+	public ResponseEntity<Book> updateBook(@RequestBody Book book) throws Exception {
 		Book bookUpdated = bookStoreAppService.updateBook(book);
 		return new ResponseEntity<Book>(bookUpdated, HttpStatus.CREATED);
 	}
 
 	@DeleteMapping("/deletebook/{bookid}")
-	public ResponseEntity<Book> deleteBookById(@PathVariable("bookid") Long bookId) {
+	public ResponseEntity<Book> deleteBookById(@PathVariable("bookid") Long bookId) throws Exception {
 		Book bookDeleted = bookStoreAppService.deleteBookById(bookId);
 		return new ResponseEntity<Book>(bookDeleted, HttpStatus.ACCEPTED);
 	}
 
 	//Buying books which will return Order entity with order details and total payable amount
 	@PostMapping("/buybooks")
-	public ResponseEntity<Order> buyBooks(@RequestBody List<Book> books) {
+	public ResponseEntity<Order> buyBooks(@RequestBody List<Book> books) throws Exception {
 		Order order = bookStoreAppService.buyBooks(books);
 		return new ResponseEntity<Order>(order, HttpStatus.OK);
 	}
