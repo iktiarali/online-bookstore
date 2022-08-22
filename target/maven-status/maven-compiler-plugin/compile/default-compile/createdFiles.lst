@@ -1,8 +1,0 @@
-com\online\bookstore\app\utility\Utilities.class
-com\online\bookstore\app\service\BookStoreAppService.class
-com\online\bookstore\app\BookstoreApp.class
-com\online\bookstore\app\entity\Book.class
-com\online\bookstore\app\service\BookStoreAppServiceImpl.class
-com\online\bookstore\app\repository\BookStoreRepository.class
-com\online\bookstore\app\controller\BookStoreAppController.class
-com\online\bookstore\app\entity\Order.class
