@@ -77,6 +77,4 @@ Username/Password - sa/admin
 4. Order entity is the response output after successfull buy operation with order details and total payable amount. Not storing in DB
 
 **Note-**
-Unable to upload the packged jar file for the application due to big size. GitHub is allowing upto 25MB whereas the app jar is 42MB+. To run the application locally with the target executable jar file, run below maven commands from app directory.
-"mvn clean package"
-Once jar get created under target folder can run in Docker as well.
+Unable to upload the packged jar file for the application due to big size. GitHub is allowing upto 25MB whereas the app jar is 42MB+. To run the application locally with the target executable jar file, run following maven command from app directory - "mvn clean package". Once jar get created under target folder can run in Docker as well.
