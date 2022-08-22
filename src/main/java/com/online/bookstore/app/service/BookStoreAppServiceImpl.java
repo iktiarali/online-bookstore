@@ -31,8 +31,8 @@ public class BookStoreAppServiceImpl implements BookStoreAppService {
 	public BookStoreAppServiceImpl() { }
 	
 	public BookStoreAppServiceImpl(BookStoreRepository bookStoreRepo) {
-        this.bookStoreRepo = bookStoreRepo;
-    }
+        	this.bookStoreRepo = bookStoreRepo;
+    	}
 	
 	@Override
 	public String welcome() {
@@ -139,11 +139,6 @@ public class BookStoreAppServiceImpl implements BookStoreAppService {
 				
 				// Update database for the book after buying
 				bookStoreRepo.save(bookDB); // Update book with new quantity after buying
-				
-				/*if(updatedQuantity > 0)
-					bookStoreRepo.save(bookDB); // Update book with new quantity after buying
-				else
-					bookStoreRepo.deleteById(bookDB.getBookId()); // Delete book if quantity is 0 after buying*/
 				
 				orderQuantity += book.getBookQuantity();
 				
